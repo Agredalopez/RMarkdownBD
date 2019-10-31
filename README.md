@@ -9,7 +9,7 @@ Bajo la hipótesis de *Ahorro del ciclo vital* desarrollada Franco Modigliani, e
 
 En ese sentido el modelo queda de la siguiente forma:
 
-$$Sr: f(X) = Xβ+u$$ 
+$Sr: f(X) = Xβ+u$ 
 
 La base de datos es un promedio de los años comprendidos entre 1960 y 1970, para mitigar el efecto del ciclo económico u otras fluctuaciones del corto plazo.
 
