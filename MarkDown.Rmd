@@ -1,0 +1,92 @@
+---
+title: "Hipótesis de Modigliani - Ciclo de Vida"
+author: "Agreda López y Campo Ríos"
+date: "31/10/2019"
+output: html_document
+---
+
+## Introducción
+
+<center>![Franco Modigliani](C:/Users/agrel/Desktop/MasterBigDataAnalytics/Proyecto_MD/RMarkdownBD/franco_modigliani.jpg)</center>
+
+El economista Franco Modigliani, Premio Nobel de Economía en 1985, desarrolló una hipótesis de la vida donde se concibe que durante el período activo, los individuos economizan y forman un capital que consumen durante su jubilación. <https://blog.gvcgaesco.es/post/20192>.
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r librería,echo=FALSE}
+library(psych)
+library(GGally)
+library(corrplot)
+```
+
+````{r LifeCycleSavings, echo=FALSE, fig.align="center"}
+knitr::kable(
+  LifeCycleSavings[1:5, ],
+  caption = "**Tabla N° 1: Países e Indicadores**"
+)
+````
+
+**Leyenda:**
+
+|Variable|Descripción                             |
+|--------|----------------------------------------|
+|sr      | Ratio de Ahorro Agregado               |
+|pop15   | % de población menor a 15              |
+|pop75   | % de población mayor a 75              |
+|dpi     | Ingreso disponible real per-capita     |
+|ddpi    | var. Ingreso disponible real per-capita|
+
+Bajo la hipótesis de *Ahorro del ciclo vital* desarrollada Franco Modigliani, el ratio de ahorro (Ahorro personal agregado respecto al ingreso disponible) es explicado por las variables detalladas en la tabla previa (leyenda). 
+
+En ese sentido el modelo queda de la siguiente forma:
+
+$$Sr: f(X) = Xβ+u$$ 
+
+La base de datos es un promedio de los años comprendidos entre 1960 y 1970, para mitigar el efecto del ciclo económico u otras fluctuaciones del corto plazo.
+
+
+```{r life, echo=FALSE}
+life_order<-LifeCycleSavings[order(LifeCycleSavings$sr),]
+```
+
+```{r life_order}
+summary(life_order)
+```
+
+## Análisis Univariado y Bivariado
+
+```{r histo, echo=FALSE, fig.align='center'}
+multi.hist(x = LifeCycleSavings, dcol = c("blue", "red"), dlty = c("dotted", "solid"),  main = colnames(LifeCycleSavings))
+```
+
+```{r corr, echo=FALSE}
+ggpairs(LifeCycleSavings, lower = list(continuous = "smooth"),
+        diag = list(continuous = "bar"), axisLabels = "none")
+
+```
+
+## Modelo
+
+````{r modelo}
+Modelo<-lm(LifeCycleSavings$sr ~ LifeCycleSavings$pop15+LifeCycleSavings$pop75+LifeCycleSavings$ddpi)
+````
+
+
+````{r model, echo=FALSE}
+summary(Modelo)
+
+corrplot(cor(dplyr::select(LifeCycleSavings, sr, pop15,pop75,ddpi)),
+         method = "number", tl.col = "black")
+````
+
+<center>![Gráfica de la Hipótesis de Modigliani](C:/Users/agrel/Desktop/MasterBigDataAnalytics/Proyecto_MD/RMarkdownBD/HM.png)</center>
+
+## Conclusiones
+
+Todas las variables, excepto  `pop75` resultan con estimador significativo al 95% de nivel de confianza.
+
+A pesar de que `pop75` no es significativa al 95%, si lo es al 90%, lo más relevante de ésta es el sentido de la variable, resulta intuitivo pensar, viendo la gráfica expuesta de la hipótesis, que el ahorro en ese tramo debe de tener relación negativo respecto a la edad, en ese periodo, las personas ya viven de su pensión.
+
+Se puede inferir que el la variación del ingreso disponible per-capita afecta positivamente al nivel del ratio de ahorros de cada país.
