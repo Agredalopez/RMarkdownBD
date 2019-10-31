@@ -13,17 +13,6 @@ $$Sr: f(X) = Xβ+u$$
 
 La base de datos es un promedio de los años comprendidos entre 1960 y 1970, para mitigar el efecto del ciclo económico u otras fluctuaciones del corto plazo.
 
-
-```{r life, echo=FALSE}
-life_order<-LifeCycleSavings[order(LifeCycleSavings$sr),]
-```
-
-```{r life_order}
-summary(life_order)
-```
-
-<center>![Gráfica de la Hipótesis de Modigliani](C:/Users/agrel/Desktop/MasterBigDataAnalytics/Proyecto_MD/RMarkdownBD/HM.png)</center>
-
 ## Conclusiones
 
 Todas las variables, excepto  `pop75` resultan con estimador significativo al 95% de nivel de confianza.
