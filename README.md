@@ -1,15 +1,19 @@
 # RMarkdownBD
 ## Introducción
 
-<center>![Franco Modigliani](C:/Users/agrel/Desktop/MasterBigDataAnalytics/Proyecto_MD/RMarkdownBD/franco_modigliani.jpg)</center>
-
 El economista Franco Modigliani, Premio Nobel de Economía en 1985, desarrolló una hipótesis de la vida donde se concibe que durante el período activo, los individuos economizan y forman un capital que consumen durante su jubilación. <https://blog.gvcgaesco.es/post/20192>.
 
 Bajo la hipótesis de *Ahorro del ciclo vital* desarrollada Franco Modigliani, el ratio de ahorro (Ahorro personal agregado respecto al ingreso disponible) es explicado por las variables detalladas en la tabla previa (leyenda). 
 
-En ese sentido el modelo queda de la siguiente forma:
+**Leyenda:**
 
-$Sr: f(X) = Xβ+u$ 
+|Variable|Descripción                             |
+|--------|----------------------------------------|
+|sr      | Ratio de Ahorro Agregado               |
+|pop15   | % de población menor a 15              |
+|pop75   | % de población mayor a 75              |
+|dpi     | Ingreso disponible real per-capita     |
+|ddpi    | var. Ingreso disponible real per-capita|
 
 La base de datos es un promedio de los años comprendidos entre 1960 y 1970, para mitigar el efecto del ciclo económico u otras fluctuaciones del corto plazo.
 
